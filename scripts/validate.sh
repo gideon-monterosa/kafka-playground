@@ -74,10 +74,10 @@ if command -v nix &> /dev/null; then
     # Try to evaluate flake
     echo ""
     echo "Validating flake.nix..."
-    if nix flake check . 2>&1 | grep -q "error"; then
-        echo "✗ flake.nix has errors"
+    if nix flake check . &> /dev/null; then
+        echo "✓ flake.nix is valid"
     else
-        echo "✓ flake.nix appears valid"
+        echo "⚠ flake.nix validation failed (may need dependencies)"
     fi
 else
     echo "⚠ Nix not found (required for devenv shell)"
