@@ -31,7 +31,7 @@
   # https://devenv.sh/scripts/
   scripts.start-kafka.exec = ''
     echo "Starting Kafka cluster with Docker Compose..."
-    docker-compose up -d
+    docker compose up -d
     echo "Waiting for Kafka to be ready..."
     sleep 10
     echo "Kafka cluster is ready!"
@@ -41,12 +41,17 @@
 
   scripts.stop-kafka.exec = ''
     echo "Stopping Kafka cluster..."
-    docker-compose down
+    docker compose down
     echo "Kafka cluster stopped."
   '';
 
   scripts.kafka-logs.exec = ''
-    docker-compose logs -f
+    docker compose logs -f
+  '';
+
+  scripts.setup-topics.exec = ''
+    echo "Setting up Kafka topics..."
+    ${pkgs.bash}/bin/bash scripts/setup-topics.sh
   '';
 
   scripts.build-examples.exec = ''
@@ -85,6 +90,7 @@
     echo "  start-kafka    - Start Kafka cluster with Docker Compose"
     echo "  stop-kafka     - Stop Kafka cluster"
     echo "  kafka-logs     - View Kafka logs"
+    echo "  setup-topics   - Create required Kafka topics"
     echo "  build-examples - Build Java examples"
     echo "  run-producer   - Run producer example"
     echo "  run-consumer   - Run consumer example"

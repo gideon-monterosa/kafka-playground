@@ -2,6 +2,8 @@
 
 A comprehensive development environment for testing and learning Apache Kafka with Java, Kafka Streams, and Docker. This playground uses Nix and devenv for reproducible development environment management.
 
+> 🚀 **New to this project?** Check out the [QUICKSTART.md](QUICKSTART.md) guide to get running in 5 minutes!
+
 ## 🎯 Overview
 
 This project provides a complete Kafka development environment with:
@@ -29,8 +31,9 @@ Before you begin, ensure you have the following installed:
    nix profile install --accept-flake-config github:cachix/devenv/latest
    ```
 
-3. **Docker & Docker Compose**
+3. **Docker with Docker Compose**
    - Docker must be running to start the Kafka cluster
+   - Docker Compose v2 is required (comes with Docker Desktop or can be installed separately)
    - Install from: https://docs.docker.com/get-docker/
 
 ## 🚀 Quick Start
@@ -62,7 +65,15 @@ This starts:
 - **Kafka Broker** on `localhost:9092`
 - **Kafka UI** on `http://localhost:8080` (web interface)
 
-### 3. Build the Java Examples
+### 3. Set Up Kafka Topics (Optional but Recommended)
+
+```bash
+setup-topics
+```
+
+This creates the topics needed for the examples. Topics are also auto-created when needed, but explicit creation gives you more control.
+
+### 4. Build the Java Examples
 
 ```bash
 build-examples
@@ -70,7 +81,7 @@ build-examples
 
 This compiles all Java code using Maven.
 
-### 4. Run the Examples
+### 5. Run the Examples
 
 #### Producer Example
 Send 10 test messages to the `test-topic`:
@@ -102,7 +113,7 @@ run-streams
 docker exec -it kafka kafka-console-consumer --topic streams-output --bootstrap-server localhost:9092 --from-beginning --property print.key=true --property key.separator=:
 ```
 
-### 5. Monitor Kafka
+### 6. Monitor Kafka
 
 #### View Logs
 ```bash
@@ -118,7 +129,7 @@ Here you can:
 - Check broker status
 - View topic configurations
 
-### 6. Stop the Kafka Cluster
+### 7. Stop the Kafka Cluster
 
 ```bash
 stop-kafka
@@ -155,6 +166,7 @@ When in the devenv shell, you have access to these commands:
 | `start-kafka` | Start the Kafka cluster with Docker Compose |
 | `stop-kafka` | Stop the Kafka cluster |
 | `kafka-logs` | View Kafka cluster logs |
+| `setup-topics` | Create required Kafka topics |
 | `build-examples` | Build all Java examples with Maven |
 | `run-producer` | Run the Kafka producer example |
 | `run-consumer` | Run the Kafka consumer example |
