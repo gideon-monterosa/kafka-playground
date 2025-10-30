@@ -293,7 +293,7 @@ Feel free to:
 
 ## 📝 License
 
-This project is provided as-is for educational purposes.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🎓 Next Steps
 
