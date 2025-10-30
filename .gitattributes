@@ -1,0 +1,18 @@
+# Auto detect text files and normalize line endings to LF
+* text=auto eol=lf
+
+# Explicitly declare text files
+*.java text
+*.xml text
+*.md text
+*.yml text
+*.yaml text
+*.nix text
+*.sh text eol=lf
+
+# Declare files that will always have CRLF line endings on checkout
+*.bat text eol=crlf
+
+# Denote all files that are truly binary and should not be modified
+*.jar binary
+*.class binary
